@@ -1,0 +1,96 @@
+\section{Euler Substitution} \label{sec:eulersubstitution}
+
+
+Leonhard Euler, a Swiss mathematician from the 1700s first introduced this method of integration, hence the name. Like reflection substitution, it's just a special case of a $u$-substitution. 
+
+\subsection*{Definition}
+
+Let $R(f, g)$ denote a rational function of $f$ and $g$. Given the integral,
+
+$$ \int R(x, \sqrt{ax^2+bx+c})\,\dx x, $$
+
+\noindent we make one of three substitutions:
+
+1. If $a>0$, then we make the substitution,
+
+$$ \sqrt{ax^2 + bx + c} = \pm x\sqrt a + t $$
+$$ \Downarrow $$
+$$ x = \frac{t^2 - c}{b + 2t\sqrt a} $$
+
+2. If $c>0$, then we make the substitution,
+
+$$ \sqrt{ax^2 + bx + c} = xt \pm \sqrt{c} $$
+$$ \Downarrow $$
+$$ x = \frac{2t\sqrt c + b}{t^2-a} $$
+
+3. If $ax^2 + bx + c$ is has two real roots $\alpha$ and $\beta$, then we substitute,
+
+$$ \sqrt{ax^2 + bx + c} = (x-\alpha)t $$
+$$ \Downarrow $$
+$$ x = \frac{a\beta - \alpha t^2}{a-t^2} $$
+
+\subsection*{Intuition}
+
+The goal of an Euler substitution is to eliminate a radical in a rational function. We see in the first two substitutions the $ax^2$ terms are canceled out so we don't have any $\sqrt t$ terms left over. In all three substitutions we are left with
+
+$$ \int R(P_1(x), P_2(x))\,\dx x, $$
+
+\noindent where $P(x)$ is a polynomial of $x$. This should be trivial to integrate using long division, partial fraction decomposition, etc. 
+
+\subsection*{Examples}
+
+1. Evaluate $\displaystyle \int \frac{\dx x}{\sqrt{x^2 + x + 1}}$.
+
+\begin{ExampleBody}
+    
+    Since $a>0$, we make the first Euler substitution and solve for $x$, $$\sqrt{x^2 + x + 1} = x + t \implies x = \frac{t^2 - 1}{1-2t}.$$
+    
+    \noindent Substitute the value for $x$ back in,
+    
+    $$ \sqrt{x^2 + x + 1} = \frac{t^2 - 1}{1-2t} + t = \frac{-t^2+t-1}{1-2t} $$
+    
+    \noindent Now find the differential,
+    
+    $$ dx = \frac{2(-t^2+t-1)}{(1-2t)^2} dt. $$
+    
+    \noindent Finally we substitute these values into our integral,
+    
+    \begin{align*} 
+    \int \frac{1-2t}{-t^2+t-1} \frac{2(-t^2+t-1)}{(1-2t)^2}\,\dx t &= \int \frac{2}{1-2t}\,\dx t \\
+    &= - \ln \left| 1-2t \right| + c \\
+    &= -\ln\left| 1-2\left(\sqrt{x^2+x+1}-x\right)\right| + c.
+    \end{align*}
+    
+\end{ExampleBody}
+
+2. Evaluate $\displaystyle \int \frac{\dx x}{\sqrt{x^2-3x-10}}$.
+\begin{ExampleBody}
+    
+    First note that $x^2-3x-10 = (x-5)(x+2)$, which indicates we'll be using our third substitution. Substitute $\sqrt{x^2-3x-10} = (x-5)t$ and solve for $x$,
+    
+    $$ x = \frac{2+5t^2}{t^2-1} \implies \sqrt{x^2-3x-10} = \left(\frac{2+5t^2}{t^2-1}-5\right)t = \frac{7t}{t^2-1} $$
+    
+    \noindent and the differential
+    
+    $$ dx = \frac{-14t}{(t^2-1)^2} dt. $$
+    
+    \noindent Finally we substitute back in and integrate,
+    
+    \begin{align}
+         \int \frac{t^2-1}{7t} \frac{-14t}{(t^2-1)^2}dt &= -2 \int \frac{dt}{t^2-1} \nonumber \\
+        &= \ln\left| \frac{t+1}{t-1} \right| +c \nonumber \\ 
+        &= \ln\left| \frac{\sqrt{x^2-3x-10} + x - 5}{\sqrt{x^2-3x-10} - x + 5} \right| + c \label{eq:eulersub1} \\
+        &= \ln\left| 2x-3+2\sqrt{x^2-3x-10} \right| + c. \label{eq:eulersub2}
+    \end{align}
+    
+    From step (\ref{eq:eulersub1}) to (\ref{eq:eulersub2}) we rationalize the denominator and absorb the $-\ln 7$ term into the constant $c$. Euler's substitution has allowed us to remove  the radical and $x^2$ term, making the integrand feasible. 
+\end{ExampleBody}
+
+\subsection*{Exercises}
+
+\begin{enumerate}
+    \item Evaluate $\displaystyle \int \frac{\dx x}{\sqrt{x^2+c}}$ for arbitrary $c$. How does this compare to when $c=\pm 1$?
+    \item Evaluate $\displaystyle \int_1^2 \frac{\dx x}{x+\sqrt{x^2+1}}$.
+    \item Evaluate $\displaystyle \int \frac{\dx x}{x\sqrt{x^2+x+1}}$.
+\end{enumerate}
+

@@ -1,0 +1,102 @@
+\ProvidesPackage{bookheader}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source: http://en.wikibooks.org/wiki/LaTeX/Hyperlinks %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{glossaries}
+\usepackage{changepage}
+\usepackage{enumitem}
+\usepackage{import}
+
+% math
+\usepackage{amsmath}
+\usepackage{mathtools} % 
+\usepackage{amsfonts}  % math fonts
+\usepackage{pgfplots}  % graphs
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 'dedication' environment: To add a dedication paragraph at the start of book %
+% Source: http://www.tug.org/pipermail/texhax/2010-June/015184.html            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{dedication}
+{
+   \cleardoublepage
+   \thispagestyle{empty}
+   \vspace*{\stretch{1}}
+   \hfill\begin{minipage}[t]{0.66\textwidth}
+   \raggedright
+}
+{
+   \end{minipage}
+   \vspace*{\stretch{3}}
+   \clearpage
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter quote at the start of chapter        %
+% Source: http://tex.stackexchange.com/a/53380 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand{\@chapapp}{}% Not necessary...
+\newenvironment{chapquote}[2][2em]
+  {\setlength{\@tempdima}{#1}%
+   \def\chapquote@author{#2}%
+   \parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+   \itshape}
+  {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% First page of book which contains 'stuff' like: %
+%  - Book title, subtitle                         %
+%  - Book author name                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Book's title and subtitle
+\title{\Huge \textbf{Integration}   \\ \huge From $u$-Substitution to Residue Calculus}
+% Author
+\author{\textsc{Daniel Nichols}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math macros                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\dx}[1]{\textrm{d}#1}
+\newcommand{\dfdx}[2]{\frac{\dx{#1}}{\dx{#2}}}
+\newcommand{\ddx}[1]{\dfdx{}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Examples and Exercise format macros            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{ExampleBody}[1][1cm]{\medskip\begin{adjustwidth}{#1}{}}{\end{adjustwidth}}
+\setenumerate[1]{label=\thesection.\arabic*.}
+\setenumerate[2]{label*=\arabic*.}
+\newcommand{\hint}[1]{[\textit{Hint:} #1]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plot Formatting                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfplotsset{width=10cm,compat=1.9}
+
+
+\newglossaryentry{primitive}{
+    name=primitive,
+    description={ For any function $f:A\to B$, $F$ is called a primitive of $f$ if $F'=f$. $F$ is also called the anti-derivative of $f$.}
+}
+
+\newglossaryentry{endpoints}{
+    name=endpoints,
+    description={ Represented by $a$ and $b$ in the integral $\int_a^b f\dx x$. The start and end of the interval to integrate over. }
+}
+\makeglossaries

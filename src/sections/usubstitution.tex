@@ -1,0 +1,86 @@
+\section{\textit{u}-Substitution} \label{sec:usubstitution}
+The well known, $u$-substitution, is often one of the first integration techniques taught to calculus students. It gets its name from the variable often chosen to represent the substitution.
+
+\subsection*{Definition} 
+Substitutions can lead to trouble when you're not careful. Consider 
+
+$\int_a^b f(x)\dx x$ and the substitution $u\mapsto (x-a)(x-b)$. This leads to the solution,
+
+$$ \int_0^0 h(u) \dx u = 0.$$
+
+This is because our choice of substitution needs to be bijective on $[a,b]$. Substitution has many little nuances, which shows the need for a more formal definition. Let $I$ be a real interval where $\phi : [a,b] \to I$ is differentiable and $f : I \to \mathbb R$ is continuous, then
+
+$$ \int_{\phi(a)}^{\phi(b)} f(x) \dx x = \int_a^b f(\phi(t))\phi'(t) \dx t $$
+
+Now if we let $x \mapsto \phi(t)$, then the differential for $x$ is $\dx x = \phi'(t) \dx t$. To go from $a$ to $\phi(a)$ requires an inverse function of $\phi$, meaning $phi$ must be bijective at $x=a$ and likewise for $b$.
+
+\subsection*{Intuition} 
+The single variable chain rule states
+
+$$ \ddx{x}[f(g(x))] = f'(g(x))g'(x), $$
+
+\noindent which means any integral in the form of 
+
+$$ \int f'(g(x))g'(x) \dx{x} = f(g(x))+c . $$
+
+\noindent Setting $u \mapsto g(x)$,
+
+\begin{align*}
+    \int f'(g(x))g'(x) \dx{x} &= \int f'(u)\dfdx{u}{x} \dx{x}\\
+    &= \int f'(u) \dx{u} \\
+    &= f(u)+c \\
+    &= f(g(x))+c \\
+\end{align*} 
+
+When evaluating definite integrals, one must remember that the endpoints of integration are in terms of $x$, i.e.
+
+$$ \int_{x=a}^{x=b} f(x)\dx x. $$
+
+When we make the integral with respect to $u(x)$, then we have to change the endpoints as well, i.e.
+
+$$ \int_{u(a)}^{u(b)} h(u) \dx u. $$
+
+
+\subsection*{Examples}
+
+1. Integrate $\displaystyle \int \sin(x^2)x\, \dx x $.
+
+\begin{ExampleBody}
+Substitution is handy when some function $f$ and some constant multiple of its derivative $f'$ lie within the integrand. Here it is trivial that $\ddx x [x^2]=2x$, so we make the substitution $u\mapsto x^2, \quad \dx u = 2x\dx x \implies (1/2)\dx u = x \dx x$.
+
+\begin{align}
+    \int \sin (x^2) x \dx x &= \frac 1 2 \int \sin u \dx u \label{eq:usub1} \\
+    &= -\frac 1 2 \cos u + c \nonumber \\
+    &= -\frac 1 2 \cos x^2 + c \label{eq:usub3}
+\end{align}
+
+In step (\ref{eq:usub1}) we substitute $u$ for $x^2$ and likewise $(1/2)\dx u$ for $x \dx x$. Next we integrate with respect to $u$. It is important to substitute $x^2$ back in for $u$ as shown in (\ref{eq:usub3}).
+\end{ExampleBody}
+
+2. Integrate $\displaystyle \int_0^4 \sqrt{5-\sqrt x}\dx x$.
+
+    \begin{ExampleBody}
+    Let $u \mapsto 5-\sqrt x \implies \sqrt x = 5-u \implies x = (5-u)^2 = 25 - 10u + u^2$ and therefore $\dx x = -10 + 2u \,\dx u$. (\ref{eq:usub4}) below shows this substitution.
+    
+    Since this is a definite integral we must re-evaluate the endpoints ($x=0$ and $x=4$), which leaves us with $u=5-\sqrt 0=5$ and $u=5-\sqrt 4 = 3$. Now we're left with,
+    
+    \begin{align}
+        \int_0^4 \sqrt{5-\sqrt x}\dx x &= \int_5^3 \sqrt u (-10+2u)\,\dx u \label{eq:usub4} \\
+        &= -\int_3^5 \left(-10u^{1/2} + 2u^{3/2}\right)\, \dx u \nonumber \\
+        &= -\left[ -\frac{20}{3}u^{3/2} + \frac{4}{5}u^{5/2} \right]_{u=3}^{u=5} \label{eq:usub5} \\
+        &= -\frac{64\sqrt 3}{5} + \frac{40\sqrt 5}{3} \nonumber
+    \end{align}
+    
+    Since we changed changed the endpoints from $x$ to $u$ values, in step (\ref{eq:usub5}) we don't need to substitute $5-\sqrt x$ back in for $u$.
+    \end{ExampleBody}
+    
+    \subsection*{Exercises}
+    For the following exercises integrate using $u$-substitution:
+    
+    \begin{enumerate}
+        \item $\displaystyle \int \frac{(5+\ln^2x)(2-\ln x)}{7x}\, \dx x $.
+        \item $\displaystyle \int \sqrt{1+5x}\, \dx x$.
+        \item $\displaystyle \int \sin x\cos x\, \dx x$.
+        \item $\displaystyle \int \sqrt{4-x^2}\,\dx x\ $ \hint{substitute $x\mapsto 2\sin\theta$}.
+        \item $\displaystyle \int e^{e^{kx} + 3kx}\,\dx x$.
+    \end{enumerate}

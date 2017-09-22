@@ -1,0 +1,36 @@
+\section{Cauchy's Differentiation Formula}\label{sec:cauchydifferentiation}
+
+Cauchy's Differentiation Formula is very similar to his integral formula (\ref{sec:Cauchy}), but extends to higher derivatives of $f$. It's commonly called \textit{Cauchy's Differentiation Formula}, because it is often used to find higher order derivatives, but it can also come in handy with integrating if higher order derivatives are known.
+
+\subsection*{Definition}
+
+The definition is very similar to that of Cauchy's Integral Formula. If $U \subset \mathbb C$ is open, $D = \{ z \in \mathbb C : |z-z_0|\le r\}$ s.t. $D\subseteq U$, $f:U\to \mathbb C$ is holomorphic, then we have, $\forall a\in D\setminus\partial D$, $n \in\mathbb N$,
+
+$$ f^{(n)}(a) = \frac{n!}{2\pi i} \oint_\gamma \frac{f(z)}{(z-a)^{n+1}}\, \dx z .$$
+
+\subsection*{Intuition}
+
+The intuition for Cauchy's Differentiation Formula is very similar to that of his integration formula if you think about the definition of a Taylor Series. Except when we find the power series of $f$ at $a$, there ends up being an extra $n!$ that factors out of the series for the $n$-th derivative. 
+
+\subsection*{Examples}
+
+1. Compute $\displaystyle \oint_\Gamma \frac{\cos z}{(z-1/2)^{3}}\,\dx z$ where $\Gamma : |z|=\pi$.
+
+\begin{ExampleBody}
+    Since $n=2$ (from the denominator), we can evaluate the integral as follows,
+    
+    \begin{align}
+        \oint_\Gamma \frac{\cos z}{(z-1/2)^3}\,\dx z &= \frac{2\pi i}{2!} \frac{d^2 [\cos z]}{dz^2}(2) \\
+        &= -\pi i\cos 2 \nonumber \\
+        &\approx 1.3073638i \nonumber.
+    \end{align}
+    Similar to before, we move the constant factor of the integral to the RHS and $\cos z$ is easy to differentiate twice.
+\end{ExampleBody}
+
+\subsection*{Exercises}
+Use Cauchy's Differentiation Formula to evaluate the following integrals
+
+\begin{enumerate}
+    \item $\displaystyle \oint_C \frac{e^z}{(z-i)^4}\,\dx z$ where $C: |z|=2$.
+    \item $\displaystyle \oint_\gamma \frac{\sin z}{(z+1)^5}\,\dx z$ where $\gamma : |z|=3$.
+\end{enumerate}

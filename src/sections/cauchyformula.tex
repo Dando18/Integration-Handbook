@@ -1,0 +1,79 @@
+\section{Cauchy's Integral Formula} \label{sec:Cauchy}
+Cauchy revolutionized the study of complex functions with his integral and residue formulas. However, his work is applicable to many real integrals as well via extension.
+
+\subsection*{Definition}
+Suppose $U\subseteq \mathbb C$ is open, the disk $D=\{z\in \mathbb C : |z-z_0|\le r\}$ is contained within $U$, $f:U\to \mathbb C$ is a holomorphic function, and $\gamma=\partial D$, then Cauchy's integral formula states, $\forall a \in D\setminus \gamma$
+
+$$ f(a) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z-a}\,\dx z. $$
+
+
+\subsection*{Intuition}
+
+Consider the theorem formula,
+
+$$ f(a) = \frac{1}{2\pi i} \oint_{\partial D} \frac{f(z)}{z-a}\,\dx z. $$
+
+Since we assumed $f$ was a holomorphic map, we know it has a power series $\sum c_n(z-a)^n$. Substituting this into the integral,
+
+\begin{align*}
+    2\pi i f(a) &= \oint_{\partial D} \frac{\sum c_n(z-a)^n}{z-a}\,\dx z \\
+    &= \sum c_n \oint_{\partial D} (z-a)^{n-1}\,\dx z \\
+\end{align*}
+
+Let us assume that $D$ is an arbitrary disk centered around $a$. It can be parameterized by $z = a + e^{it}$. Now consider just the integral within the sum. For $n \ge 1$,
+
+\begin{align*}
+    \oint_{\partial D} (z-a)^{n-1}\,\dx z &= \int_{-\pi}^{\pi} (a+e^{it}-a)^{m} (a+e^{it})\,\dx t \quad (m \ge 0) \\
+    &= \int_{-\pi}^{-\pi} \left(ae^{itm} + e^{it(m+1)}\right)\,\dx t \\
+    &= 0 \quad (\forall m\ge 0).
+\end{align*}
+
+\noindent And for $n=0$,
+
+\begin{align*}
+    \oint_{\partial D} \frac{1}{z-a}\,\dx z &= \int_{-\pi}^{\pi} \frac{a+e^{it}}{e^{it}}\,\dx t \\
+    &= \int_{-\pi}^{\pi}\left( ae^{-it} + 1\right)\,\dx t \\
+    &= 2\pi i
+\end{align*}
+
+\noindent Remembering that $c_0 = f(a)$, our sum should result to 
+
+\begin{align*}
+    2\pi i f(a) &= c_0 2\pi i \\
+    &= f(a) 2 \pi i
+\end{align*}
+
+\subsection*{Examples}
+
+1. Evaluate $\displaystyle \oint_C \frac{(z-2)^2}{z+i}\,\dx z$ where $C : |z|=2$.
+\begin{ExampleBody}
+In this example we see $f(z)=(z-2)^2$ and $a=-i$. By Cauchy's formula,
+
+\begin{align*} 
+\oint_C \frac{(z-2)^2}{z+i}\,\dx z &= 2\pi if(-i) \\
+&= 2\pi i (i+2)^2 \\
+&= \pi(6i-8).
+\end{align*}
+Using Cauchy's method prevents us from having to expand the numerator, divide, and parametrize the integrand.
+\end{ExampleBody}
+
+2. Evaluate $\displaystyle \oint_\gamma \frac{\exp(-z)}{z-\pi/2}\,\dx z$ where $\gamma: |z|=2$.
+\begin{ExampleBody}
+\begin{align*}
+    \oint_\gamma \frac{\exp(-z)}{z-\pi/2}\,\dx z &= 2\pi i f(\pi/2) \\
+    &= 2\pi i e^{-\pi/2}
+\end{align*}
+
+\end{ExampleBody}
+
+
+\subsection*{Exercises}
+For the following exercises, integrate using Cauchy's Integral Formula
+
+\begin{enumerate}
+    \item Evaluate $\displaystyle \oint_\gamma \frac{ze^z}{z-i}\, \dx z$ where $\gamma : |z|=2$.
+    \item Evaluate $\displaystyle \oint_D \frac{ze^z}{z^2+1}\,\dx z$ where $D : |z| = 2$
+\end{enumerate}
+
+
+

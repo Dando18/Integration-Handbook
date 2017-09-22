@@ -1,0 +1,124 @@
+\section{Integrals of Inverse Functions} \label{sec:inverse}
+
+First by Laisant in 1905, this formula is capable of allowing quick integration of inverse formulas.
+
+\subsection*{Definition}
+
+Given a bijective map $f : A \to B$, where $A, B \in \mathbb R$, the integral of the inverse $f^{-1} : B \to A$ is given by,
+
+$$ \int f^{-1}(x)\,\dx x = xf^{-1}(x)-(F\circ f^{-1})(x) + c, $$
+
+\noindent where $F$ is the anti-derivative of $f$.
+
+\subsection*{Intuition}
+
+It is trivial to show the equality if we differentiate both sides,
+
+\begin{align*}
+    f^{-1}(x) &= (f^{-1}(x) + x(f^{-1})'(x)) - F'(f^{-1}(x))(f^{-1})'(x) \\
+    &= f^{-1}(x) + x(f^{-1})'(x) - x(f^{-1})'(x) \\
+    &= f^{-1}(x).
+\end{align*}
+
+This is fine for showing why the identity is true, but there's an even better geometric representation. Assume that $f^{-1}$ is differentiable. Let $f(a)=c$ and $f(b)=d$. Then we can rewrite the identity as,
+
+$$ \int_c^d f^{-1}(x)\,\dx x + \int_a^b f(x)\,\dx x = bd-ac. $$
+
+We can now trivially see that this holds from Figure (\ref{fig:inverseplot}).
+
+\begin{figure}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            ymax = 4.75,
+            ymin = 0,
+            xmin = 2.25,
+            xmax = 5.5,
+            ytick = {1,4},
+            yticklabels={$c$,$d$},
+            xtick = {3,5.25},
+            xticklabels={$a$,$b$},
+            xlabel = $x$,
+            ylabel = {$f(x)$},
+        ]
+        % yes please
+        \addplot[
+            name path = f,
+            domain = 3:5.25,
+            samples = 200,
+            color = red,
+        ]{(x-4)^3+2};
+        \addlegendentry{$f(x)$}
+        \addplot[
+            draw = none,
+            fill = red!25,
+            opacity = 0.25,
+            domain = 3:5.25,
+        ] {(x-4)^3+2} \closedcycle;
+        
+        
+        \draw[thick, draw=blue] (axis cs:5.25,0) -- (axis cs:5.25,4);
+        
+        \draw[name path = t, thick, draw=blue] (axis cs:0,4) -- (axis cs:5.25,4);
+        
+        \draw[thick, draw=green] (axis cs:3,0) -- (axis cs:3,1);
+        
+        \draw[name path = d, thick, draw=green] (axis cs:0,1) -- (axis cs:3,1);
+        
+        \draw[name path = L, thick, draw=red] (axis cs:0,0) -- (axis cs:0,4);
+        
+        
+        
+        \addplot[
+            color = blue!15,
+        ]fill between[of=f and t, soft clip={domain=3:5.25}];
+        \addplot[
+            color = blue!15,
+        ]fill between[of=t and d, soft clip={domain=0:3.1}];
+        
+        \node[draw=none] at (axis cs:3.5,3) {$\displaystyle\int_c^d f^{-1}(y)\,\dx y$};
+        \node[draw=none] at (axis cs:4.25,0.75) {$\displaystyle\int_a^b f(x)\,\dx x$};
+        
+        \end{axis}
+    
+    \end{tikzpicture}
+    \caption{Graphical intuition behind inverse derivative.}
+    \label{fig:inverseplot}
+\end{figure}
+
+\subsection*{Examples}
+
+1. $\displaystyle\int \arcsin x\,\dx x$
+
+\begin{ExampleBody}
+    First, notice that the function of the integrand is an inverse function, where $f^{-1}(x)=\arcsin x$ and $f(x)=\sin x$. According to the identity, we need to also find $F$, the anti-derivative of $f$, which in this case $F(x)=-\cos x$.
+    
+    \begin{align}
+        \int \arcsin x\,\dx x &= x\arcsin x - (-\cos \circ \arcsin)(x) + c \nonumber \\
+        &= x\arcsin x + \cos \arcsin x + c \nonumber \\
+        &= x\arcsin x + \sqrt{1-x^2} + c \label{eq:cosarcsin}
+    \end{align}
+    
+    In step (\ref{eq:cosarcsin}) we use the identity that $\cos \arcsin x = \sqrt{1-x^2}$ (think of the geometric meanings of the trig functions).
+\end{ExampleBody}
+
+2. $\displaystyle \int \ln x\,\dx x$
+
+\begin{ExampleBody}
+    Again, we can simply plug into the identity,
+    
+    \begin{align*}
+        \int \ln x\,\dx x &= x\ln x - (\exp \circ \ln)(x) + c \\
+        &= x(\ln x - 1) + c
+    \end{align*}
+\end{ExampleBody}
+
+\subsection*{Exercises}
+Evaluate the following integrals using the inverse identity of integration.
+
+\begin{enumerate}
+    \item $\displaystyle \int W(z)\,\dx z$ where $W(z)$, the W-Lambert function, is the inverse of $ze^z$.
+    \item $\displaystyle \int\arctan x\,\dx x$.
+    \item $\displaystyle \int \arccos x \,\dx x$.
+\end{enumerate}
+

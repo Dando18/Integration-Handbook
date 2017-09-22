@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LaTeX book template                           %%
+%% Author:  Amber Jain (http://amberj.devio.us/) %%
+%% License: ISC license                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,11pt]{book}
+\usepackage{bookheader}
+
+
+
+\begin{document}
+
+
+\frontmatter
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add a dedication paragraph to dedicate your book to someone %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{dedication}
+Dedicated to those who read it.
+\end{dedication}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Auto-generated table of contents, list of figures and list of tables %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+\mainmatter
+
+%%%%%%%%%%%
+% Preface %
+%%%%%%%%%%%
+\chapter*{Preface}
+Integration is usually taught in first semester calculus, but can take years to master and understand nuances. This book tries to capture different techniques involved in calculating integrals and the intricacies of choosing a method of attack.
+
+\section*{Prerequisites}
+The content of this book assumes basic knowledge of  algebra, differential/integral calculus, and real/complex analysis.
+
+
+\section*{Structure of book}
+% You might want to add short description about each chapter in this book.
+Each method discussed will be broken into four parts:
+\begin{itemize}
+    \item Intuition
+    \item Definition
+    \item Example
+    \item Practice
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Give credit where credit is due. %
+% Say thanks!                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgements}
+\begin{itemize}
+\item I'd like to thank Mike the Capybara.
+\end{itemize}
+\mbox{}\\
+%\mbox{}\\
+
+
+\chapter{Substitution}
+
+\begin{chapquote}{Paul Dirac}
+``The aim of science is to make difficult things understandable in a simpler way; the aim of poetry is to state simple things in an incomprehensible way. The two are incompatible.''
+\end{chapquote}
+
+\import{sections/}{usubstitution.tex}
+\import{sections/}{reflectionsubstitution.tex}
+\import{sections/}{eulersubstitution.tex}
+
+\chapter{Miscellaneous}
+
+\begin{chapquote}{Mike the Capybara}
+''snoo snoo''
+\end{chapquote}
+
+\import{sections/}{inverse.tex}
+
+\chapter{Complex Integrals}
+
+\begin{chapquote}{Jacques Hadamard}
+    ''The shortest path between two truths in the real domain passes through the complex domain.''
+\end{chapquote}
+
+\import{sections/}{cauchyformula.tex}
+\import{sections/}{cauchydifferentialformula.tex}
+
+\glsaddall
+\printglossaries
+
+\end{document}
